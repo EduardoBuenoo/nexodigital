@@ -11,34 +11,259 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <base href="./">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        [hidden] { display: none !important; }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-  }
-}
-</script>
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
+      }
+    }
+    </script>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased">
-    <div id="root"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-40 transition-all duration-300 bg-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2 group cursor-pointer" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <div class="bg-indigo-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="text-2xl font-black tracking-tighter text-white">NEXO DIGITAL</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#solucao" class="text-slate-400 hover:text-white transition-colors">Solução</a>
+                <a href="#servicos" class="text-slate-400 hover:text-white transition-colors">Serviços</a>
+                <a href="#pacotes" class="text-slate-400 hover:text-white transition-colors">Pacotes</a>
+                <button onclick="window.openWhatsApp('Olá! Gostaria de falar com um especialista sobre meu negócio.')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-indigo-500/20">
+                    Fale Conosco
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative pt-40 pb-20 md:pt-60 md:pb-40 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl aspect-square bg-indigo-600/10 blur-[120px] rounded-full -z-10"></div>
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[1.1]">
+                Transformamos seu negócio em uma <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400">máquina digital de vendas</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Landing pages, automações e presença online feitas sob medida para pequenos negócios que querem crescer de verdade.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button onclick="window.toggleModal(true)" class="group relative bg-white text-slate-950 px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-all flex items-center gap-2 overflow-hidden">
+                    <span>Solicitar diagnóstico gratuito</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <a href="#solucao" class="text-slate-400 hover:text-white px-8 py-4 font-semibold transition-all">Ver como funciona</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problemas -->
+    <section class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-16">Sua empresa enfrenta esses problemas?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
+                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <p class="text-xl font-semibold text-slate-200">Clientes não encontram sua empresa</p>
+                </div>
+                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
+                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </div>
+                    <p class="text-xl font-semibold text-slate-200">Atendimento lento no WhatsApp</p>
+                </div>
+                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
+                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    </div>
+                    <p class="text-xl font-semibold text-slate-200">Perfil confuso nas redes sociais</p>
+                </div>
+                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
+                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    </div>
+                    <p class="text-xl font-semibold text-slate-200">Falta de organização digital</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solução -->
+    <section id="solucao" class="py-24 bg-indigo-600">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-8">
+                Na Nexo Digital, organizamos sua presença online e automatizamos seu atendimento.
+            </h2>
+            <p class="text-xl md:text-2xl text-indigo-100 font-medium leading-relaxed">
+                Você passa a vender mais sem complicação técnica e foca no que realmente importa: gerenciar seu negócio.
+            </p>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16">Nossos Serviços</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Landing Pages -->
+                <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-slate-900 transition-colors">
+                    <div class="text-indigo-500 mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Landing Pages</h3>
+                    <p class="text-slate-400 leading-relaxed">Páginas de alta conversão otimizadas para transformar visitantes em clientes reais.</p>
+                </div>
+                <!-- Chatbots -->
+                <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-slate-900 transition-colors">
+                    <div class="text-indigo-500 mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Chatbots e automações</h3>
+                    <p class="text-slate-400 leading-relaxed">Atendimento 24h automático no seu WhatsApp para nunca mais perder uma venda por demora.</p>
+                </div>
+                <!-- Google Meu Negócio -->
+                <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-slate-900 transition-colors">
+                    <div class="text-indigo-500 mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Google Meu Negócio</h3>
+                    <p class="text-slate-400 leading-relaxed">Sua empresa no topo das pesquisas locais e no mapa dos seus clientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pacotes -->
+    <section id="pacotes" class="py-24 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Escolha o seu Pacote</h2>
+                <p class="text-slate-400">Soluções específicas para cada estágio do seu negócio digital.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="packages-grid">
+                <!-- Rendered by logic or just hardcoded for simplicity in HTML -->
+                <!-- Pacote Start -->
+                <div class="relative p-8 rounded-[2rem] border bg-slate-900/50 border-emerald-500/30 flex flex-col h-full transition-transform hover:-translate-y-2">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Pacote Start</h3>
+                        <p class="text-slate-400 text-sm font-medium">Presença Digital Essencial</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-3xl font-black text-white">R$ 397</span>
+                        <div class="flex items-center gap-1.5 mt-2 text-slate-500 text-xs font-semibold">Até 5 dias</div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow text-sm text-slate-300">
+                        <li>• Google Meu Negócio</li>
+                        <li>• Ajuste de perfil Instagram</li>
+                        <li>• WhatsApp Business</li>
+                        <li>• Cardápio digital simples</li>
+                    </ul>
+                    <button onclick="window.openWhatsApp('Olá! Quero o Pacote Start de R$ 397.')" class="w-full py-3.5 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-500 text-white transition-all">Selecionar Plano</button>
+                </div>
+                <!-- Pacote Vendas -->
+                <div class="relative p-8 rounded-[2rem] border bg-amber-600/10 border-amber-500/40 shadow-xl flex flex-col h-full transition-transform hover:-translate-y-2">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-full tracking-widest uppercase">Mais Procurado</div>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Pacote Vendas</h3>
+                        <p class="text-slate-400 text-sm font-medium">Conversão Online</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-3xl font-black text-white">R$ 897</span>
+                        <div class="flex items-center gap-1.5 mt-2 text-slate-500 text-xs font-semibold">Até 7 dias</div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow text-sm text-slate-300">
+                        <li>• Landing page simples</li>
+                        <li>• Até 10 descrições de produtos</li>
+                        <li>• Botão WhatsApp básico</li>
+                        <li>• Ajuste de links e CTA</li>
+                    </ul>
+                    <button onclick="window.openWhatsApp('Olá! Quero o Pacote Vendas de R$ 897.')" class="w-full py-3.5 rounded-xl font-bold text-sm bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all">Selecionar Plano</button>
+                </div>
+                <!-- Outros pacotes seguem o mesmo padrão... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Prova Social -->
+    <section class="py-24">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-slate-900 p-12 rounded-[3rem] text-center border border-slate-800 relative">
+                <p class="text-2xl md:text-3xl italic text-slate-200 leading-relaxed mb-8">
+                    "Atendimento rápido e organização total do nosso WhatsApp. Antes perdíamos metade das mensagens, agora o chatbot filtra e já entrega o cliente pronto para fechar."
+                </p>
+                <div class="flex flex-col items-center">
+                    <span class="font-bold text-lg text-white">Cliente Piloto</span>
+                    <span class="text-slate-500 text-sm">Empresa de Consultoria</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-24 bg-gradient-to-b from-slate-950 to-indigo-950 text-center px-6">
+        <h2 class="text-4xl md:text-6xl font-black mb-8 text-white">Pronto para organizar seu negócio <br /> e vender mais?</h2>
+        <button onclick="window.openWhatsApp('Olá! Vi o site e estou pronto para organizar meu negócio e vender mais.')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-2xl font-black text-xl transition-all shadow-2xl active:scale-95">
+            Fale conosco no WhatsApp
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-900 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <span class="text-xl font-black text-white">NEXO DIGITAL</span>
+            <p class="text-slate-500 text-sm">© 2024 Nexo Digital. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Diagnosis Modal -->
+    <div id="diagnosis-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm" hidden>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
+            <div class="p-6 flex justify-between items-center border-b border-slate-800">
+                <h3 class="text-xl font-bold">Diagnóstico Digital AI</h3>
+                <button onclick="window.toggleModal(false)" class="text-slate-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="p-6" id="modal-content">
+                <div id="form-view">
+                    <p class="text-slate-400 text-sm mb-4">Descreva seu negócio para receber uma análise gratuita.</p>
+                    <textarea id="business-info" placeholder="Ex: Sou dono de uma hamburgueria..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-white h-32 resize-none mb-4 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+                    <button id="generate-btn" onclick="window.handleDiagnosis()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition-all">Gerar Diagnóstico Grátis</button>
+                </div>
+                <div id="result-view" hidden>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-indigo-400 font-semibold mb-2">Análise de IA:</h4>
+                            <p id="analysis-text" class="text-slate-300 leading-relaxed"></p>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-400 font-semibold mb-2">Próximos Passos Sugeridos:</h4>
+                            <ul id="recommendations-list" class="space-y-3"></ul>
+                        </div>
+                        <div class="space-y-3 pt-2">
+                            <button onclick="window.openWhatsApp('Olá! Acabei de fazer meu diagnóstico AI e gostaria de implementar as soluções sugeridas.')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl">Implementar agora via WhatsApp</button>
+                            <button onclick="window.toggleModal(false)" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl">Fechar diagnóstico</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
