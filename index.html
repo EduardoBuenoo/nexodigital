@@ -1,269 +1,252 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexo Digital | Transformação Digital</title>
+    <title>Brasa & Sabor | Lanchonete Artesanal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <base href="./">
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        [hidden] { display: none !important; }
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+        .glow-card { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
     </style>
-    <script type="importmap">
-    {
-      "imports": {
-        "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
-      }
-    }
-    </script>
-<link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased">
+<body class="bg-slate-950 text-white antialiased">
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-40 transition-all duration-300 bg-transparent py-6">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-2 group cursor-pointer" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-                <div class="bg-indigo-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                </div>
-                <span class="text-2xl font-black tracking-tighter text-white">NEXO DIGITAL</span>
+    <nav id="navbar" class="fixed top-0 w-full z-40 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+            <a href="#topo" class="flex items-center gap-3 font-black tracking-tight text-2xl">
+                <span class="bg-amber-500 text-slate-950 px-3 py-1 rounded-xl">Brasa</span>
+                <span>&amp; Sabor</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="#portabilidade" class="hover:text-white transition-colors">Portabilidade</a>
+                <a href="#sobre" class="hover:text-white transition-colors">Sobre nós</a>
+                <a href="#cardapio" class="hover:text-white transition-colors">Cardápio</a>
+                <a href="#contato" class="hover:text-white transition-colors">Contato</a>
             </div>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#solucao" class="text-slate-400 hover:text-white transition-colors">Solução</a>
-                <a href="#servicos" class="text-slate-400 hover:text-white transition-colors">Serviços</a>
-                <a href="#pacotes" class="text-slate-400 hover:text-white transition-colors">Pacotes</a>
-                <button onclick="window.openWhatsApp('Olá! Gostaria de falar com um especialista sobre meu negócio.')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-indigo-500/20">
-                    Fale Conosco
-                </button>
-            </div>
+            <a href="#contato" class="hidden md:inline-flex bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-3 rounded-full transition-all">Peça agora</a>
         </div>
     </nav>
 
     <!-- Hero -->
-    <header class="relative pt-40 pb-20 md:pt-60 md:pb-40 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl aspect-square bg-indigo-600/10 blur-[120px] rounded-full -z-10"></div>
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[1.1]">
-                Transformamos seu negócio em uma <br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400">máquina digital de vendas</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Landing pages, automações e presença online feitas sob medida para pequenos negócios que querem crescer de verdade.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button onclick="window.toggleModal(true)" class="group relative bg-white text-slate-950 px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-all flex items-center gap-2 overflow-hidden">
-                    <span>Solicitar diagnóstico gratuito</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-                <a href="#solucao" class="text-slate-400 hover:text-white px-8 py-4 font-semibold transition-all">Ver como funciona</a>
+    <header id="topo" class="relative pt-36 md:pt-52 pb-24 overflow-hidden">
+        <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[38rem] h-[38rem] bg-rose-500/30 blur-[140px] rounded-full"></div>
+        <div class="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-amber-500/30 blur-[140px] rounded-full"></div>
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
+            <div class="space-y-8">
+                <span class="inline-flex items-center gap-2 text-sm font-semibold text-amber-400 bg-amber-500/10 px-4 py-2 rounded-full">🍔 Lanches artesanais feitos na hora</span>
+                <h1 class="text-4xl md:text-6xl font-black leading-tight">
+                    A lanchonete que transforma fome em <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400">experiência</span>.
+                </h1>
+                <p class="text-lg text-slate-300 max-w-xl">
+                    Sabores autênticos, pão artesanal e ingredientes selecionados. Atendimento rápido no salão, no delivery e no seu bolso.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#cardapio" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded-2xl transition-all">Ver cardápio</a>
+                    <a href="#portabilidade" class="border border-white/20 hover:border-white/50 text-white font-semibold px-8 py-4 rounded-2xl transition-all">Como pedir</a>
+                </div>
+                <div class="flex flex-wrap gap-6 text-sm text-slate-400">
+                    <div class="flex items-center gap-2">⏱️ Entrega média em 35 min</div>
+                    <div class="flex items-center gap-2">📍 Retirada rápida no balcão</div>
+                    <div class="flex items-center gap-2">⭐ 4.9 na avaliação dos clientes</div>
+                </div>
+            </div>
+            <div class="glow-card rounded-[2.5rem] p-8 bg-gradient-to-br from-slate-900/70 via-slate-900/40 to-slate-950/80">
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-slate-400">Combo do dia</p>
+                            <h3 class="text-2xl font-bold">Brasa Supreme</h3>
+                        </div>
+                        <span class="text-amber-400 font-bold text-xl">R$ 39,90</span>
+                    </div>
+                    <p class="text-slate-300">
+                        Hambúrguer 160g, cheddar curado, cebola caramelizada, molho especial e batata crocante.
+                    </p>
+                    <div class="grid gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Novidade</span>
+                            <p class="text-sm text-slate-400">Pão brioche exclusivo</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-rose-500/20 text-rose-300 text-xs font-bold px-3 py-1 rounded-full">🔥 Favorito</span>
+                            <p class="text-sm text-slate-400">Molho Brasa picante</p>
+                        </div>
+                    </div>
+                    <a href="#contato" class="w-full inline-flex justify-center bg-white text-slate-950 font-bold px-6 py-4 rounded-2xl hover:scale-[1.02] transition-all">Pedir pelo WhatsApp</a>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Problemas -->
-    <section class="py-24 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-16">Sua empresa enfrenta esses problemas?</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
-                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    </div>
-                    <p class="text-xl font-semibold text-slate-200">Clientes não encontram sua empresa</p>
-                </div>
-                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
-                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    </div>
-                    <p class="text-xl font-semibold text-slate-200">Atendimento lento no WhatsApp</p>
-                </div>
-                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
-                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                    </div>
-                    <p class="text-xl font-semibold text-slate-200">Perfil confuso nas redes sociais</p>
-                </div>
-                <div class="bg-slate-900/50 border border-rose-500/20 p-8 rounded-3xl hover:border-rose-500/40 transition-all group">
-                    <div class="bg-rose-500/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                    </div>
-                    <p class="text-xl font-semibold text-slate-200">Falta de organização digital</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solução -->
-    <section id="solucao" class="py-24 bg-indigo-600">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-8">
-                Na Nexo Digital, organizamos sua presença online e automatizamos seu atendimento.
-            </h2>
-            <p class="text-xl md:text-2xl text-indigo-100 font-medium leading-relaxed">
-                Você passa a vender mais sem complicação técnica e foca no que realmente importa: gerenciar seu negócio.
-            </p>
-        </div>
-    </section>
-
-    <!-- Serviços -->
-    <section id="servicos" class="py-24">
+    <!-- Portabilidade -->
+    <section id="portabilidade" class="py-24 bg-gradient-to-b from-slate-950 to-slate-900">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-16">Nossos Serviços</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Landing Pages -->
-                <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-slate-900 transition-colors">
-                    <div class="text-indigo-500 mb-6 group-hover:scale-110 transition-transform origin-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-14 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl md:text-5xl font-bold">Portabilidade para pedir de qualquer lugar.</h2>
+                    <p class="text-slate-300 text-lg">
+                        Com nosso cardápio digital, você escolhe o lanche no celular, personaliza o pedido e acompanha o status em tempo real.
+                    </p>
+                    <div class="grid gap-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-amber-400 text-lg">✔</span>
+                            <p class="text-slate-300">QR Code nas mesas e no balcão para pedir rápido.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-amber-400 text-lg">✔</span>
+                            <p class="text-slate-300">Pagamento seguro e integração com carteiras digitais.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-amber-400 text-lg">✔</span>
+                            <p class="text-slate-300">Atendimento via WhatsApp com respostas imediatas.</p>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-white">Landing Pages</h3>
-                    <p class="text-slate-400 leading-relaxed">Páginas de alta conversão otimizadas para transformar visitantes em clientes reais.</p>
                 </div>
-                <!-- Chatbots -->
-                <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-slate-900 transition-colors">
-                    <div class="text-indigo-500 mb-6 group-hover:scale-110 transition-transform origin-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+                <div class="grid gap-6">
+                    <div class="glow-card rounded-3xl p-8">
+                        <p class="text-sm uppercase text-slate-400">Passo 01</p>
+                        <h3 class="text-2xl font-bold mt-2">Escolha o canal</h3>
+                        <p class="text-slate-300 mt-3">Delivery, retirada ou salão. Você escolhe onde quer receber.</p>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-white">Chatbots e automações</h3>
-                    <p class="text-slate-400 leading-relaxed">Atendimento 24h automático no seu WhatsApp para nunca mais perder uma venda por demora.</p>
-                </div>
-                <!-- Google Meu Negócio -->
-                <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-slate-900 transition-colors">
-                    <div class="text-indigo-500 mb-6 group-hover:scale-110 transition-transform origin-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <div class="glow-card rounded-3xl p-8">
+                        <p class="text-sm uppercase text-slate-400">Passo 02</p>
+                        <h3 class="text-2xl font-bold mt-2">Personalize tudo</h3>
+                        <p class="text-slate-300 mt-3">Adicione extras, tire ingredientes e monte seu combo perfeito.</p>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-white">Google Meu Negócio</h3>
-                    <p class="text-slate-400 leading-relaxed">Sua empresa no topo das pesquisas locais e no mapa dos seus clientes.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pacotes -->
-    <section id="pacotes" class="py-24 bg-slate-900/30">
+    <!-- Sobre Nós -->
+    <section id="sobre" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Escolha o seu Pacote</h2>
-                <p class="text-slate-400">Soluções específicas para cada estágio do seu negócio digital.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="packages-grid">
-                <!-- Rendered by logic or just hardcoded for simplicity in HTML -->
-                <!-- Pacote Start -->
-                <div class="relative p-8 rounded-[2rem] border bg-slate-900/50 border-emerald-500/30 flex flex-col h-full transition-transform hover:-translate-y-2">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-white mb-1">Pacote Start</h3>
-                        <p class="text-slate-400 text-sm font-medium">Presença Digital Essencial</p>
-                    </div>
-                    <div class="mb-6">
-                        <span class="text-3xl font-black text-white">R$ 397</span>
-                        <div class="flex items-center gap-1.5 mt-2 text-slate-500 text-xs font-semibold">Até 5 dias</div>
-                    </div>
-                    <ul class="space-y-3 mb-8 flex-grow text-sm text-slate-300">
-                        <li>• Google Meu Negócio</li>
-                        <li>• Ajuste de perfil Instagram</li>
-                        <li>• WhatsApp Business</li>
-                        <li>• Cardápio digital simples</li>
-                    </ul>
-                    <button onclick="window.openWhatsApp('Olá! Quero o Pacote Start de R$ 397.')" class="w-full py-3.5 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-500 text-white transition-all">Selecionar Plano</button>
+            <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl md:text-5xl font-bold">Sobre nós</h2>
+                    <p class="text-slate-300 text-lg">
+                        A Brasa &amp; Sabor nasceu do sonho de criar uma lanchonete com cara de casa, mas com sabor de chef. Tudo é preparado na hora, com ingredientes locais e receitas autorais.
+                    </p>
+                    <p class="text-slate-300 text-lg">
+                        Nosso espaço é aconchegante, pensado para encontros, happy hours e aquele lanche especial depois do trabalho. Atendimento humanizado e muita paixão pelo que fazemos.
+                    </p>
                 </div>
-                <!-- Pacote Vendas -->
-                <div class="relative p-8 rounded-[2rem] border bg-amber-600/10 border-amber-500/40 shadow-xl flex flex-col h-full transition-transform hover:-translate-y-2">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-full tracking-widest uppercase">Mais Procurado</div>
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-white mb-1">Pacote Vendas</h3>
-                        <p class="text-slate-400 text-sm font-medium">Conversão Online</p>
-                    </div>
-                    <div class="mb-6">
-                        <span class="text-3xl font-black text-white">R$ 897</span>
-                        <div class="flex items-center gap-1.5 mt-2 text-slate-500 text-xs font-semibold">Até 7 dias</div>
-                    </div>
-                    <ul class="space-y-3 mb-8 flex-grow text-sm text-slate-300">
-                        <li>• Landing page simples</li>
-                        <li>• Até 10 descrições de produtos</li>
-                        <li>• Botão WhatsApp básico</li>
-                        <li>• Ajuste de links e CTA</li>
+                <div class="glow-card rounded-[2.5rem] p-10">
+                    <h3 class="text-2xl font-bold mb-6">Por que escolher a gente?</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start gap-3"><span class="text-amber-400">★</span> Carnes selecionadas e pão artesanal diário.</li>
+                        <li class="flex items-start gap-3"><span class="text-amber-400">★</span> Molhos exclusivos e opções veganas criativas.</li>
+                        <li class="flex items-start gap-3"><span class="text-amber-400">★</span> Atendimento rápido e entrega sempre quentinha.</li>
                     </ul>
-                    <button onclick="window.openWhatsApp('Olá! Quero o Pacote Vendas de R$ 897.')" class="w-full py-3.5 rounded-xl font-bold text-sm bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all">Selecionar Plano</button>
-                </div>
-                <!-- Outros pacotes seguem o mesmo padrão... -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Prova Social -->
-    <section class="py-24">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="bg-slate-900 p-12 rounded-[3rem] text-center border border-slate-800 relative">
-                <p class="text-2xl md:text-3xl italic text-slate-200 leading-relaxed mb-8">
-                    "Atendimento rápido e organização total do nosso WhatsApp. Antes perdíamos metade das mensagens, agora o chatbot filtra e já entrega o cliente pronto para fechar."
-                </p>
-                <div class="flex flex-col items-center">
-                    <span class="font-bold text-lg text-white">Cliente Piloto</span>
-                    <span class="text-slate-500 text-sm">Empresa de Consultoria</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Final -->
-    <section class="py-24 bg-gradient-to-b from-slate-950 to-indigo-950 text-center px-6">
-        <h2 class="text-4xl md:text-6xl font-black mb-8 text-white">Pronto para organizar seu negócio <br /> e vender mais?</h2>
-        <button onclick="window.openWhatsApp('Olá! Vi o site e estou pronto para organizar meu negócio e vender mais.')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-2xl font-black text-xl transition-all shadow-2xl active:scale-95">
-            Fale conosco no WhatsApp
-        </button>
+    <!-- Cardápio -->
+    <section id="cardapio" class="py-24 bg-slate-900/60">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <h2 class="text-3xl md:text-5xl font-bold">Cardápio que conquista na primeira mordida</h2>
+                <p class="text-slate-300 mt-4">Combos completos, burgers artesanais e acompanhamentos irresistíveis.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glow-card rounded-[2rem] p-8 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold">Brasa Classic</h3>
+                        <span class="text-amber-400 font-bold">R$ 29,90</span>
+                    </div>
+                    <p class="text-slate-300 flex-grow">120g de carne, queijo prato, alface, tomate e maionese da casa.</p>
+                    <span class="mt-6 text-sm text-slate-400">⭐ Mais pedido da semana</span>
+                </div>
+                <div class="glow-card rounded-[2rem] p-8 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold">Duplo Cheddar</h3>
+                        <span class="text-amber-400 font-bold">R$ 36,90</span>
+                    </div>
+                    <p class="text-slate-300 flex-grow">Dois smash burgers, cheddar cremoso e cebola crispy.</p>
+                    <span class="mt-6 text-sm text-slate-400">🔥 Intensidade máxima</span>
+                </div>
+                <div class="glow-card rounded-[2rem] p-8 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold">Veggie Garden</h3>
+                        <span class="text-amber-400 font-bold">R$ 32,90</span>
+                    </div>
+                    <p class="text-slate-300 flex-grow">Hambúrguer de grão de bico, queijo vegano e molho de ervas.</p>
+                    <span class="mt-6 text-sm text-slate-400">🌿 Opção plant-based</span>
+                </div>
+                <div class="glow-card rounded-[2rem] p-8 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold">Combo Kids</h3>
+                        <span class="text-amber-400 font-bold">R$ 24,90</span>
+                    </div>
+                    <p class="text-slate-300 flex-grow">Mini burger, batata smile e suco natural de fruta.</p>
+                    <span class="mt-6 text-sm text-slate-400">🎈 Para os pequenos</span>
+                </div>
+                <div class="glow-card rounded-[2rem] p-8 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold">Batata Brasa</h3>
+                        <span class="text-amber-400 font-bold">R$ 14,90</span>
+                    </div>
+                    <p class="text-slate-300 flex-grow">Batata rústica com páprica defumada e molho cheddar.</p>
+                    <span class="mt-6 text-sm text-slate-400">🍟 Acompanhamento perfeito</span>
+                </div>
+                <div class="glow-card rounded-[2rem] p-8 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold">Milkshake Supreme</h3>
+                        <span class="text-amber-400 font-bold">R$ 18,90</span>
+                    </div>
+                    <p class="text-slate-300 flex-grow">Cremosidade artesanal com calda de chocolate belga.</p>
+                    <span class="mt-6 text-sm text-slate-400">🥤 500 ml de felicidade</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contato" class="py-24 bg-gradient-to-b from-slate-950 to-slate-900">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold">Pronto para pedir?</h2>
+            <p class="text-slate-300 text-lg mt-4">Faça seu pedido agora e receba tudo fresquinho em casa.</p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://wa.me/5511999990000" target="_blank" rel="noreferrer" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded-2xl transition-all">Pedir pelo WhatsApp</a>
+                <a href="mailto:contato@brasaesabor.com" class="border border-white/20 hover:border-white/50 text-white font-semibold px-8 py-4 rounded-2xl transition-all">Reservar mesa</a>
+            </div>
+            <div class="mt-10 grid sm:grid-cols-3 gap-6 text-slate-400 text-sm">
+                <div>
+                    <p class="font-semibold text-white">Horário</p>
+                    <p>Todos os dias • 11h às 23h</p>
+                </div>
+                <div>
+                    <p class="font-semibold text-white">Endereço</p>
+                    <p>Rua dos Sabores, 123 • Centro</p>
+                </div>
+                <div>
+                    <p class="font-semibold text-white">Delivery</p>
+                    <p>Entrega em até 5km sem taxa</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-slate-900 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <span class="text-xl font-black text-white">NEXO DIGITAL</span>
-            <p class="text-slate-500 text-sm">© 2024 Nexo Digital. Todos os direitos reservados.</p>
+    <footer class="py-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span class="font-bold">© 2024 Brasa &amp; Sabor</span>
+            <div class="flex gap-4 text-sm text-slate-400">
+                <span>Instagram: @brasaesabor</span>
+                <span>Telefone: (11) 99999-0000</span>
+            </div>
         </div>
     </footer>
 
-    <!-- Diagnosis Modal -->
-    <div id="diagnosis-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm" hidden>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
-            <div class="p-6 flex justify-between items-center border-b border-slate-800">
-                <h3 class="text-xl font-bold">Diagnóstico Digital AI</h3>
-                <button onclick="window.toggleModal(false)" class="text-slate-400 hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
-            </div>
-            <div class="p-6" id="modal-content">
-                <div id="form-view">
-                    <p class="text-slate-400 text-sm mb-4">Descreva seu negócio para receber uma análise gratuita.</p>
-                    <textarea id="business-info" placeholder="Ex: Sou dono de uma hamburgueria..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-white h-32 resize-none mb-4 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
-                    <button id="generate-btn" onclick="window.handleDiagnosis()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition-all">Gerar Diagnóstico Grátis</button>
-                </div>
-                <div id="result-view" hidden>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-indigo-400 font-semibold mb-2">Análise de IA:</h4>
-                            <p id="analysis-text" class="text-slate-300 leading-relaxed"></p>
-                        </div>
-                        <div>
-                            <h4 class="text-indigo-400 font-semibold mb-2">Próximos Passos Sugeridos:</h4>
-                            <ul id="recommendations-list" class="space-y-3"></ul>
-                        </div>
-                        <div class="space-y-3 pt-2">
-                            <button onclick="window.openWhatsApp('Olá! Acabei de fazer meu diagnóstico AI e gostaria de implementar as soluções sugeridas.')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl">Implementar agora via WhatsApp</button>
-                            <button onclick="window.toggleModal(false)" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl">Fechar diagnóstico</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script type="module" src="index.tsx"></script>
-<script type="module" src="/index.tsx"></script>
 </body>
 </html>
